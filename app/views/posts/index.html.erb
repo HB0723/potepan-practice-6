@@ -1,0 +1,66 @@
+<div class="container schedule-container">
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h2 class="fs-4">予定一覧</h2>
+
+  <%= link_to "新規追加",
+              new_post_path,
+              class: "btn btn-primary" %>
+</div>
+
+<table class="table table-schedule mb-0">
+
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>タイトル</th>
+      <th>開始日</th>
+      <th>終了日</th>
+      <th>終日</th>
+      <th>更新日時</th>
+      <th>詳細</th>
+      <th>編集</th>
+      <th>削除</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @posts.each do |post| %>
+      <tr>
+        <td><%= post.id %></td>
+        <td><%= post.title %></td>
+        <td><%= post.start_date.strftime("%Y/%m/%d") %></td>
+        <td><%= post.end_date.strftime("%Y/%m/%d") %></td>
+        <td><%= post.all_day ? content_tag(:span, "○", class: "badge-allday") : "" %></td>
+        <td><%= post.updated_at.strftime("%Y/%m/%d %H:%M") %></td>
+
+        <td>
+          <%= link_to "詳細", post %>
+        </td>
+
+        <td>
+          <%= link_to "編集", edit_post_path(post) %>
+        </td>
+
+        <td>
+          <%= link_to "削除",
+                      post,
+                      data: {
+                        turbo_method: :delete,
+                        turbo_confirm: "予定を削除しますか？"
+                      } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+  <div class="summary-card">
+    <span>予定合計 <strong><%= @posts.count %></strong>件</span>
+
+    <span class="today-date">
+      本日の日付 <%= Date.current.strftime("%Y/%m/%d") %>
+    </span>
+  </div>
+
+</div>
