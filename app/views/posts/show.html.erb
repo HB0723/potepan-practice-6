@@ -1,0 +1,39 @@
+<div class="form-container">
+
+  <div class="back-link-top">
+    <%= link_to "← 一覧に戻る", posts_path %>
+  </div>
+
+  <div class="show-title-row">
+    <h2><%= @post.title %></h2>
+
+    <%= link_to edit_post_path(@post), class: "btn-outline-navy" do %>
+      ✏️ 編集
+    <% end %>
+  </div>
+
+  <table class="table-detail">
+    <tbody>
+      <tr>
+        <th>開始日</th>
+        <td><%= @post.start_date.strftime("%Y/%m/%d") %></td>
+      </tr>
+
+      <tr>
+        <th>終了日</th>
+        <td><%= @post.end_date.strftime("%Y/%m/%d") %></td>
+      </tr>
+
+      <tr>
+        <th>終日</th>
+        <td><%= @post.all_day ? "○" : "-" %></td>
+      </tr>
+
+      <tr>
+        <th>スケジュールメモ</th>
+        <td><%= @post.body.presence || "-" %></td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>

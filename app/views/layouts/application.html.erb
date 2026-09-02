@@ -9,6 +9,10 @@
 
     <%= yield :head %>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600&family=Zen+Kaku+Gothic+New:wght@400;500&display=swap" rel="stylesheet">
+
     <link rel="manifest" href="/manifest.json">
     <link rel="icon" href="/icon.png" type="image/png">
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
@@ -18,6 +22,20 @@
   </head>
 
   <body>
+    <!-- 一番上のヘッダー -->
+    <header class="app-header text-center">
+      <h1>スケジュール管理アプリ</h1>
+    </header>
+
+    <!-- フラッシュメッセージ -->
+    <% if flash[:notice] %>
+      <p class="flash-notice"><%= flash[:notice] %></p>
+    <% end %>
+
+    <% if flash[:alert] %>
+      <p class="flash-alert"><%= flash[:alert] %></p>
+    <% end %>
+
     <%= yield %>
   </body>
 </html>

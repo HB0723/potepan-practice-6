@@ -1,0 +1,30 @@
+ja:
+  activerecord:
+    models:
+      post: 予定
+
+    attributes:
+      post:
+        title: タイトル
+        body: スケジュールメモ
+        start_date: 開始日
+        end_date: 終了日
+        all_day: 終日
+
+    errors:
+      models:
+        post:
+          attributes:
+            title:
+              blank: "を入力してください"
+              too_long: "は20文字以内で入力してください"
+            start_date:
+              blank: "を入力してください"
+            end_date:
+              blank: "を入力してください"
+              invalid: "が正しくありません"
+            body:
+              too_long: "は500文字以内で入力してください"
+
+  errors:
+    format: "%{attribute}%{message}"

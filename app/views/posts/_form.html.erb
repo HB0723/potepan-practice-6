@@ -1,0 +1,51 @@
+<%= form_with model: @post do |form| %>
+
+  <div>
+    <%= form.label :title, "タイトル", class: "form-label" %>
+    <%= form.text_field :title, class: "form-control #{'is-invalid' if @post.errors[:title].any?}" %>
+
+    <% if @post.errors[:title].any? %>
+      <p class="invalid-feedback"><%= @post.errors[:title].first %></p>
+    <% end %>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <%= form.label :start_date, "開始日", class: "form-label" %>
+      <%= form.date_field :start_date, class: "form-control #{'is-invalid' if @post.errors[:start_date].any?}" %>
+
+      <% if @post.errors[:start_date].any? %>
+        <p class="invalid-feedback"><%= @post.errors[:start_date].first %></p>
+      <% end %>
+    </div>
+
+    <div class="col-md-6">
+      <%= form.label :end_date, "終了日", class: "form-label" %>
+      <%= form.date_field :end_date, class: "form-control #{'is-invalid' if @post.errors[:end_date].any?}" %>
+
+      <% if @post.errors[:end_date].any? %>
+        <p class="invalid-feedback"><%= @post.errors[:end_date].first %></p>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="form-check">
+    <%= form.check_box :all_day, class: "form-check-input" %>
+    <%= form.label :all_day, "終日の場合はチェックを入れます", class: "form-check-label" %>
+  </div>
+
+  <div>
+    <%= form.label :body, "スケジュールメモ", class: "form-label" %>
+    <%= form.text_area :body, class: "form-control #{'is-invalid' if @post.errors[:body].any?}", rows: 5 %>
+
+    <% if @post.errors[:body].any? %>
+      <p class="invalid-feedback"><%= @post.errors[:body].first %></p>
+    <% end %>
+  </div>
+
+  <div class="d-flex justify-content-end gap-2 mt-4">
+    <%= link_to "キャンセル", posts_path, class: "btn btn-outline-secondary" %>
+    <%= form.submit "保存", class: "btn btn-primary" %>
+  </div>
+
+<% end %>
