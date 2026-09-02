@@ -1,5 +1,4 @@
 class PostsController < ApplicationController
-
   def index
     @posts = Post.order(start_date: :asc)
   end
@@ -58,5 +57,4 @@ class PostsController < ApplicationController
       :all_day
     )
   end
-
 end
